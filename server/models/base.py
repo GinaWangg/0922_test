@@ -1,4 +1,7 @@
-# filepath: server/models/base.py
+"""
+Base model providing common functionality for all database models.
+This module contains the BaseModel class with shared validation methods.
+"""
 from . import db
 
 class BaseModel(db.Model):
@@ -6,6 +9,21 @@ class BaseModel(db.Model):
     
     @staticmethod
     def validate_string_length(field_name, value, min_length=2, allow_none=False):
+        """
+        Validate string field length and content.
+        
+        Args:
+            field_name (str): Name of the field being validated for error messages
+            value (str or None): The value to validate
+            min_length (int): Minimum required length for the string (default: 2)
+            allow_none (bool): Whether None values are allowed (default: False)
+            
+        Returns:
+            str: The validated string value
+            
+        Raises:
+            ValueError: If validation fails due to None value, wrong type, or insufficient length
+        """
         if value is None:
             if allow_none:
                 return value
