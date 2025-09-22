@@ -1,3 +1,7 @@
+"""
+Game API routes for the Tailspin Toys Crowd Funding platform.
+This module provides endpoints to retrieve game information with publisher and category details.
+"""
 from flask import jsonify, Response, Blueprint
 from models import db, Game, Publisher, Category
 from sqlalchemy.orm import Query
@@ -6,6 +10,12 @@ from sqlalchemy.orm import Query
 games_bp = Blueprint('games', __name__)
 
 def get_games_base_query() -> Query:
+    """
+    Create the base SQLAlchemy query for retrieving games with their publisher and category data.
+    
+    Returns:
+        Query: A SQLAlchemy query object with joins to Publisher and Category tables
+    """
     return db.session.query(Game).join(
         Publisher, 
         Game.publisher_id == Publisher.id, 
@@ -18,6 +28,12 @@ def get_games_base_query() -> Query:
 
 @games_bp.route('/api/games', methods=['GET'])
 def get_games() -> Response:
+    """
+    Get all games with their publisher and category information.
+    
+    Returns:
+        Response: JSON response containing an array of game objects with publisher and category details
+    """
     # Use the base query for all games
     games_query = get_games_base_query().all()
     
@@ -28,6 +44,16 @@ def get_games() -> Response:
 
 @games_bp.route('/api/games/<int:id>', methods=['GET'])
 def get_game(id: int) -> tuple[Response, int] | Response:
+    """
+    Get a specific game by its ID with publisher and category information.
+    
+    Args:
+        id (int): The unique identifier of the game to retrieve
+        
+    Returns:
+        Response: JSON response containing the game object with publisher and category details,
+                 or a 404 error response if the game is not found
+    """
     # Use the base query and add filter for specific game
     game_query = get_games_base_query().filter(Game.id == id).first()
     
