@@ -2,43 +2,157 @@
 // Import any necessary dependencies
 ---
 
-<header class="bg-blue-500 dark:bg-blue-700 text-white p-4 shadow-md transition-colors duration-300">
-  <div class="container mx-auto flex justify-between items-center pl-4 pr-4">
-    <div class="flex items-center">
-      <div class="relative group">
-        <button id="menu-toggle" class="focus:outline-none mr-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-900/90 border-b border-slate-800/50 shadow-lg">
+  <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
+    <!-- Left side - Logo and Menu -->
+    <div class="flex items-center space-x-4">
+      <!-- Mobile Menu Button -->
+      <div class="relative group md:hidden">
+        <button 
+          id="menu-toggle" 
+          class="p-2 rounded-lg hover:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-200"
+          aria-label="Toggle menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-300 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <nav id="menu" class="hidden absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 text-slate-800 dark:text-white rounded shadow-lg z-10 transition-colors duration-300">
-          <ul class="py-1">
-            <li><a href="/" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700">Home</a></li>
-            <li><a href="/about" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700">About</a></li>
+        
+        <!-- Mobile Dropdown Menu -->
+        <nav 
+          id="menu" 
+          class="hidden absolute left-0 mt-2 w-56 bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 rounded-xl shadow-2xl z-50 overflow-hidden"
+        >
+          <ul class="py-2">
+            <li>
+              <a 
+                href="/" 
+                class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-200 flex items-center space-x-3"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/about" 
+                class="block px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-200 flex items-center space-x-3"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>About</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
-      <h1 class="text-xl font-bold"><a href="/" class="hover:underline">Tailspin Toys</a></h1>
+
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z" />
+          </svg>
+        </div>
+        
+        <h1 class="text-xl font-bold">
+          <a 
+            href="/" 
+            class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-300 transition-all duration-300"
+          >
+            Tailspin Toys
+          </a>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center space-x-8">
+      <a 
+        href="/" 
+        class="text-slate-300 hover:text-white font-medium transition-colors duration-200 relative group"
+      >
+        <span>Home</span>
+        <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
+      </a>
+      <a 
+        href="/about" 
+        class="text-slate-300 hover:text-white font-medium transition-colors duration-200 relative group"
+      >
+        <span>About</span>
+        <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
+      </a>
+    </nav>
+
+    <!-- Right side - CTA Button -->
+    <div class="hidden sm:flex items-center space-x-4">
+      <button class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium py-2 px-6 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
+        <span class="flex items-center space-x-2">
+          <span>Fund a Game</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </span>
+      </button>
     </div>
   </div>
 </header>
 
 <script>
-  // Toggle menu visibility when hamburger is clicked
+  // Enhanced menu toggle functionality
   const menuToggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('menu');
   
   if (menuToggle && menu) {
-    menuToggle.addEventListener('click', () => {
+    // Toggle menu visibility
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       menu.classList.toggle('hidden');
+      
+      // Add animation classes
+      if (!menu.classList.contains('hidden')) {
+        menu.style.transform = 'translateY(-10px)';
+        menu.style.opacity = '0';
+        setTimeout(() => {
+          menu.style.transform = 'translateY(0)';
+          menu.style.opacity = '1';
+        }, 10);
+      }
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', (event) => {
       const isClickInside = menuToggle.contains(event.target as Node) || menu.contains(event.target as Node);
       if (!isClickInside && !menu.classList.contains('hidden')) {
-        menu.classList.add('hidden');
+        menu.style.transform = 'translateY(-10px)';
+        menu.style.opacity = '0';
+        setTimeout(() => {
+          menu.classList.add('hidden');
+        }, 150);
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.classList.contains('hidden')) {
+        menu.style.transform = 'translateY(-10px)';
+        menu.style.opacity = '0';
+        setTimeout(() => {
+          menu.classList.add('hidden');
+        }, 150);
       }
     });
   }
+
+  // Add smooth transitions for mobile menu
+  const style = document.createElement('style');
+  style.textContent = `
+    #menu {
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+  `;
+  document.head.appendChild(style);
 </script>
